@@ -14,6 +14,7 @@ import AssignmentManagement from '../pages/Assignments';
 import AllNotes from './notes/AllNotes';
 import Notes from '../pages/notes';
 import ToDo from '../pages/ToDo';
+import Resources from '../pages/Resources';
 
 const DashboardNav = () => {
     const [isActive, setIsActive] = useState("Dashboard");
@@ -23,7 +24,7 @@ const DashboardNav = () => {
         { icon: <MdAssignment className="w-5 w-5" />, label: 'Assignments', path: '/assignments' },
         { icon: <MdAssignment className="w-5 w-5" />, label: 'Notes', path: '/notes' },
         { icon: <MdEvent className="w-5 w-5" />, label: 'ToDos', path: '/todos' },
-        { icon: <MdSchedule className="w-5 w-5" />, label: 'Schedule', path: '/schedule' },
+        { icon: <MdSchedule className="w-5 w-5" />, label: 'Resources', path: '/resources' },
         { icon: <MdSettings className="w-5 w-5" />, label: 'Settings', path: '/settings' },
     ]
     return (
@@ -51,6 +52,7 @@ const DashboardNav = () => {
                     {isActive === "Assignments" && <AssignmentManagement />}
                     {isActive === "Notes" && <Notes />}
                     {isActive === "ToDos" && <ToDo />}
+                    {isActive === "Resources" && <Resources />}
                 </div>
             </div>
         </>
