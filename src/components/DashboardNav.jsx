@@ -11,6 +11,9 @@ import ClassSchedules from './ClassSchedules';
 import Upcoming from './Upcoming';
 import Dashboard from '../pages/Dashboard';
 import AssignmentManagement from '../pages/Assignments';
+import AllNotes from './notes/AllNotes';
+import Notes from '../pages/notes';
+import ToDo from '../pages/ToDo';
 
 const DashboardNav = () => {
     const [isActive, setIsActive] = useState("Dashboard");
@@ -18,14 +21,15 @@ const DashboardNav = () => {
     const navItems = [
         { icon: <MdDashboard className="w-5 w-5" />, label: "Dashboard", path: '/dashboard' },
         { icon: <MdAssignment className="w-5 w-5" />, label: 'Assignments', path: '/assignments' },
-        { icon: <MdEvent className="w-5 w-5" />, label: 'Events', path: '/events' },
+        { icon: <MdAssignment className="w-5 w-5" />, label: 'Notes', path: '/notes' },
+        { icon: <MdEvent className="w-5 w-5" />, label: 'ToDos', path: '/todos' },
         { icon: <MdSchedule className="w-5 w-5" />, label: 'Schedule', path: '/schedule' },
         { icon: <MdSettings className="w-5 w-5" />, label: 'Settings', path: '/settings' },
     ]
     return (
         <>
             <div className='flex flex-row gap-6'>
-                <nav className='bg-white h-screen w-64 shadow-lg  left-0 top-16'>
+                <nav className='bg-white h-screen w-64 shadow-lg  left-0 top-16 hidden md:block lg:block'>
                     <div className='px-4 py-6'>
                         <ul className='space-y-5'>
                             {navItems.map((item, index) => (
@@ -45,6 +49,8 @@ const DashboardNav = () => {
                 <div className='flex-1'>
                     {isActive === "Dashboard" && <Dashboard />}
                     {isActive === "Assignments" && <AssignmentManagement />}
+                    {isActive === "Notes" && <Notes />}
+                    {isActive === "ToDos" && <ToDo />}
                 </div>
             </div>
         </>
