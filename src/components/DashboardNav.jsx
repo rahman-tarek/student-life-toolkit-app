@@ -15,6 +15,7 @@ import AllNotes from './notes/AllNotes';
 import Notes from '../pages/notes';
 import ToDo from '../pages/ToDo';
 import Resources from '../pages/Resources';
+import Settings from '../pages/Settings';
 
 const DashboardNav = () => {
     const [isActive, setIsActive] = useState("Dashboard");
@@ -53,6 +54,7 @@ const DashboardNav = () => {
                     {isActive === "Notes" && <Notes />}
                     {isActive === "ToDos" && <ToDo />}
                     {isActive === "Resources" && <Resources />}
+                    {isActive === "Settings" && <Settings />}
                 </div>
             </div>
         </>
