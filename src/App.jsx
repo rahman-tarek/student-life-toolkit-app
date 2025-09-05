@@ -3,6 +3,7 @@ import Layout from "./components/Layout";
 import Dashboard from "./components/Layout";
 import Header from "./components/Header";
 import { Routes, Route } from "react-router-dom";
+import Login from "./pages/Login";
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Layout />} />
         <Route path="/dashboard" element={<ClassSchedules />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </>
   )

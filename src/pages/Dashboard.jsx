@@ -4,8 +4,8 @@ import Upcoming from "../components/Upcoming";
 const Dashboard = () => {
     return (
         <>
-            <div className='grid grid-cols-3 gap-4'>
-                <div className="col-span-2">
+            <div className='p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
+                <div className="">
                     <ClassSchedules />
                 </div>
                 <ClassSchedules />

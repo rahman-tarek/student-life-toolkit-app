@@ -31,12 +31,12 @@ const DashboardNav = () => {
     return (
         <>
             <div className='flex flex-row gap-6'>
-                <nav className='bg-white h-screen w-64 shadow-lg  left-0 top-16 hidden md:block lg:block'>
+                <nav className='bg-white h-screen w-64 shadow-lg  left-0 top-16 hidden sm:hidden md:hidden lg:block'>
                     <div className='px-4 py-6'>
                         <ul className='space-y-5'>
                             {navItems.map((item, index) => (
                                 <li key={index} onClick={() => setIsActive(item.label)}>
-                                    <Link className='flex items-center gap-2 px-4 py-2 text-gray-700 hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200'>
+                                    <Link className={`flex items-center gap-2 px-4 py-2 ${isActive === item.label ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
                                         {item.icon}
                                         <span>{item.label}</span>
                                     </Link>
