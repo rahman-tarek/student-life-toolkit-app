@@ -7,7 +7,7 @@
 /* Custom utility classes */
 @layer utilities {
     .search {
-        @apply  max-w-xl mx-auto p-4;
+        @apply max-w-xl mx-auto p-4;
     }
 
     .search-wrapper {
@@ -19,6 +19,6 @@
     }
 
     .search input {
-        @apply  pl-10 pr-4 py-2 text-gray-600 rounded-lg shadow-xs focus:outline-none focus:border-green-900;
+        @apply pl-10 pr-4 py-2 text-gray-600 rounded-lg shadow-xs focus:outline-none focus:border-green-900;
     }
 }

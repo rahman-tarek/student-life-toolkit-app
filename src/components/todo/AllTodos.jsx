@@ -8,7 +8,7 @@ const initialTasks = [
         title: "Complete Math Assignment",
         description: "Solve problems 1-20 from Chapter 5",
         deadline: "2024-12-15",
-        priority: "high",
+        priority: "High",
         completed: false,
         createdAt: "2024-12-10",
     },
@@ -17,7 +17,7 @@ const initialTasks = [
         title: "Study for Physics Exam",
         description: "Review chapters 8-12, focus on thermodynamics",
         deadline: "2024-12-20",
-        priority: "high",
+        priority: "High",
         completed: false,
         createdAt: "2024-12-10",
     },
@@ -35,7 +35,7 @@ const initialTasks = [
         title: "Chemistry Lab Report",
         description: "Document experiment results and analysis",
         deadline: "2024-12-18",
-        priority: "medium",
+        priority: "Medium",
         completed: false,
         createdAt: "2024-12-09",
     },
@@ -44,7 +44,7 @@ const initialTasks = [
         title: "Read Literature Chapter",
         description: "Chapter 15-17 for next class discussion",
         deadline: "2024-12-16",
-        priority: "low",
+        priority: "Low",
         completed: true,
         createdAt: "2024-12-07",
     },
@@ -53,12 +53,20 @@ const AllTodos = () => {
     const [priority, setPriority] = useState("All");
     const [status, setStatus] = useState("All");
 
+    // Filter tasks
+    const filteredTasks = initialTasks.filter((item) => {
+        const priorityTasks = priority === "All" || priority == item.priority;
+        const newStatus = status === "Pending" ? false : true;
+        const statusTasks = status === "All" || newStatus === item.completed;
+        return priorityTasks && statusTasks;
+    })
+
     return (
         <>
             <div className="p-4 mt-8 rounded-lg border border-gray-300">
                 <div className="flex flex-col md:flex-row justify-between items-center p-6 items-center">
                     <div>
-                        <p className="text-gray-800 text-xl">Tasks</p>
+                        <p className="text-gray-700 font-bold text-2xl">Tasks</p>
                     </div>
                     <div>
                         <button className="flex flex-col md:flex-row justify-between items-center gap-2 py-1 px-4 rounded-md bg-green-800 text-white cursor-pointer">
@@ -67,7 +75,7 @@ const AllTodos = () => {
                         </button>
                     </div>
                 </div>
-                <div className="flex flex-col md:flex-row p-4 justify-left">
+                <div className="flex flex-col md:flex-row p-4 justify-center">
                     <div className="search">
                         <form action="">
                             <div className="search-wrapper">
@@ -117,7 +125,7 @@ const AllTodos = () => {
 
                 {/* Lists */}
                 <div className="p-6 mt-4">
-                    {initialTasks.map((item, index) => (
+                    {filteredTasks.map((item, index) => (
                         <div className="w-full p-5 mt-4 rounded-lg border border-gray-300 hover:shadow-md">
                             <h3 className="text-gray-900 text-lg font-semibold">{item.title}</h3>
                             <p>{item.description}</p>

@@ -59,7 +59,7 @@ const AssignmentTable = () => {
 
     // Extract unique 
     const uniqueSubjects = ["All", ...new Set(assignmentsData.map((item) => item.subject))];
-    const extractedStatus = ["ALL", ...new Set(assignmentsData.map(item => item.status))]
+    const extractedStatus = ["All", ...new Set(assignmentsData.map(item => item.status))]
 
     // Filtering Logics
     const filteredAssignments = assignmentsData.filter((item) => {
@@ -86,6 +86,7 @@ const AssignmentTable = () => {
                         onChange={(e) => setSelectedStatus(e.target.value)}
                         className="w-60 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-800"
                     >
+
                         {extractedStatus.map((item, index) => (
                             <option value={item} key={index}>{item}</option>
                         ))}
@@ -98,27 +99,27 @@ const AssignmentTable = () => {
                         onChange={(e) => setSelectedSub(e.target.value)}
                         className="w-60 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-800"
                     >
-                        <option value="All">All</option>
-                        {assignmentsData.map((item, index) => (
-                            <option value={item.subject} key={item.id}>{item.subject}</option>
+
+                        {uniqueSubjects.map((item, index) => (
+                            <option value={item} key={item.id}>{item}</option>
                         ))}
                     </select>
                 </div>
                 <div className="p-4">
-                    <p>Showing 6 of 6 assignments</p>
+                    <p>Showing {filteredAssignments.length} of {assignmentsData.length} assignments</p>
                 </div>
             </div>
 
             {/* Table */}
-            <div className="p-6 mt-4 overflow-x-auto rounded-lg shadow">
+            <div className="p-6 mt-4  rounded-lg shadow">
                 <div className="">
                     <h3 className="text-xl font-bold">Your Assignments</h3>
                     <p className="text-gray-600 text-md">Track all your academic tasks and deadlines</p>
                 </div>
-                <div className="w-full mt-4 rounded-lg border border-gray-300">
+                <div className="w-full  mt-4 rounded-lg border border-gray-300">
                     <table className="w-full">
                         <thead className="p-2">
-                            <tr className="p-2 bg-gray-100 text-gray-700 text-left">
+                            <tr className="p-2 overflow-x-auto bg-gray-100 text-gray-700 text-left">
                                 <th className="p-2">Assignment</th>
                                 <th className="p-2">Subject</th>
                                 <th className="p-2">Type</th>
