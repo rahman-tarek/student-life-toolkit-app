@@ -21,9 +21,9 @@ const AssignmentManagement = () => {
                 </div>
             </div>
             <AssignmentTable />
-            {/* {
+            {
                 isOpen && <AddNewAssignment isOpen={isOpen} />
-            } */}
+            }
         </>
     )
 }

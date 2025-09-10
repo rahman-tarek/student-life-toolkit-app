@@ -1,68 +1,19 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
-// Sample assignments data
-const assignmentsData = [
-    {
-        id: 1,
-        title: "Calculus Problem Set 5",
-        subject: "Mathematics",
-        dueDate: "2024-12-15",
-        status: "pending",
-        type: "Assignment",
-    },
-    {
-        id: 2,
-        title: "Physics Lab Report",
-        subject: "Physics",
-        dueDate: "2024-12-12",
-        status: "submitted",
-        type: "Report",
-    },
-    {
-        id: 3,
-        title: "Chemistry Final Exam",
-        subject: "Chemistry",
-        dueDate: "2024-12-20",
-        status: "pending",
-        type: "Exam",
-    },
-    {
-        id: 4,
-        title: "History Research Paper",
-        subject: "History",
-        dueDate: "2024-12-10",
-        status: "overdue",
-        type: "Assignment",
-    },
-    {
-        id: 5,
-        title: "English Literature Essay",
-        subject: "English",
-        dueDate: "2024-12-18",
-        status: "pending",
-        type: "Essay",
-    },
-    {
-        id: 6,
-        title: "Biology Quiz",
-        subject: "Biology",
-        dueDate: "2024-12-14",
-        status: "submitted",
-        type: "Quiz",
-    },
-]
 
 const AssignmentTable = () => {
     const [selectedSub, setSelectedSub] = useState("All");
     const [selectedStatus, setSelectedStatus] = useState("All");
+    const assignments = useSelector((state) => state.assignment);
 
     // Extract unique 
-    const uniqueSubjects = ["All", ...new Set(assignmentsData.map((item) => item.subject))];
-    const extractedStatus = ["All", ...new Set(assignmentsData.map(item => item.status))]
+    const uniqueSubjects = ["All", ...new Set(assignments.map((item) => item.subject))];
+    const extractedStatus = ["All", ...new Set(assignments.map(item => item.status))]
 
     // Filtering Logics
-    const filteredAssignments = assignmentsData.filter((item) => {
+    const filteredAssignments = assignments.filter((item) => {
         const statusMatch = selectedStatus === "All" || item.status === selectedStatus;
         const subjectMatch = selectedSub === "All" || item.subject === selectedSub;
         return statusMatch && subjectMatch;
@@ -107,7 +58,7 @@ const AssignmentTable = () => {
                         </select>
                     </div>
                     <div className="p-4">
-                        <p>Showing {filteredAssignments.length} of {assignmentsData.length} assignments</p>
+                        <p>Showing {filteredAssignments.length} of {assignments.length} assignments</p>
                     </div>
                 </div>
             </div>

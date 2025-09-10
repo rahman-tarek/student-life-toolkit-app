@@ -5,10 +5,26 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { useState } from "react";
+import { useSelector } from "react-redux";
 
 
 const AddNewAssignment = (isOpen) => {
-    const [open, setOpen] = React.useState(isOpen)
+    const [open, setOpen] = React.useState(isOpen);
+    const [title, setTitle] = React.useState("");
+    const [subject, setSubject] = React.useState("");
+    const [type, setType] = React.useState("");
+    const [dueDate, setDueDate] = useState("");
+
+    // Get data from state
+    const assignments = useSelector((state) => state.assignment);
+
+
+    // New assignments handler
+    const addNewAssignmentHandler = (e) => {
+        e.preventDefault();
+        console.log(title, subject, type, dueDate)
+    }
     return (
         <>
             <Modal
@@ -22,36 +38,45 @@ const AddNewAssignment = (isOpen) => {
                         <div className="p-6 max-w-full bg-white rounded-lg border border-gray-300">
                             <h3 className="text-xl font-bold text-gray-800">Add new assignments</h3>
                             <p className="text-gray-700 mt-2">Create a new assignment or exam to track your academic tasks.</p>
-                            <form action="" className="flex flex-col items-left gap-4 mt-2">
+                            <form action="" className="flex flex-col items-left gap-4 mt-2"
+                                onSubmit={addNewAssignmentHandler}
+                            >
                                 <div className="item">
                                     <label htmlFor="" className="">Title</label>
                                     <input type="text" name="" placeholder="Assignment title"
-                                        className=""
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
                                     />
                                 </div>
                                 <div className="item">
                                     <label htmlFor="">Subject</label>
-                                    <input type="text" name="" placeholder="Subject name" />
+                                    <input type="text" name=""
+                                        value={subject}
+                                        onChange={(e) => setSubject(e.target.value)}
+                                        placeholder="Subject name"
+                                    />
                                 </div>
                                 <div className="item">
                                     <label htmlFor="">Type</label>
-                                    <select name="" id="">
-                                        <option value="">Assignment</option>
-                                        <option value="">Exam</option>
-                                        <option value="">Quiz</option>
-                                        <option value="">Report</option>
-                                        <option value="">Essay</option>
+                                    <select name="" id="" value={type} onChange={(e) => setType(e.target.value)} >
+                                        {
+                                            assignments.map((item, index) => (
+                                                <option value={item.type} key={index}>{item.type}</option>
+                                            ))
+                                        }
                                     </select>
                                 </div>
                                 <div>
-                                    <DatePickerValue />
+                                    <DatePickerValue parentDate={setDueDate} />
                                 </div>
                                 <div className="item">
                                     <label htmlFor="">File Upload(Optional)</label>
                                     <input type="file" name="" placeholder="Choose File" />
                                 </div>
                                 <div className="py-2 flex flex-row justify-between items-center">
-                                    <button className="outline-none px-4 py-2 rounded-md bg-green-800 text-gray-100 text-sm font-bold">Add Assignment</button>
+                                    <button
+                                        type="submit"
+                                        className="outline-none px-4 py-2 rounded-md bg-green-800 text-gray-100 text-sm font-bold">Add Assignment</button>
                                     <button className="outline-none px-2 py-2 rounded-md bg-gray-300 text-gray-800 text-sm font-bold"
                                         onClick={() => setOpen(!open)}
                                     >Cancel</button>
