@@ -21,4 +21,18 @@
     .search input {
         @apply pl-10 pr-4 py-2 text-gray-600 rounded-lg shadow-xs focus:outline-none focus:border-green-900;
     }
+
+    /* Add Assignment Css */
+    .add-assignment label {
+        @apply text-gray-600 text-sm font-bold;
+    }
+
+    .add-assignment input,
+    select {
+        @apply text-gray-800 px-4 py-2 rounded-md outline-none shadow-xs;
+    }
+
+    .add-assignment .item {
+        @apply flex flex-col;
+    }
 }

@@ -113,7 +113,7 @@ const AssignmentTable = () => {
             </div>
 
             {/* Table */}
-            <div className="p-2 sm:p-1 md:p-0 lg:p-0">
+            <div className="p-2 w-full sm:p-1 md:p-0 lg:p-0">
                 <div className="p-6 mt-4 rounded-lg shadow">
                     <div className="">
                         <h3 className="text-xl font-bold">Your Assignments</h3>
