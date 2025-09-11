@@ -5,7 +5,7 @@ import Search from "./Search";
 const Header = () => {
     return (
         <>
-            <header className="sticky top-0 z-50 bg-white shadow-sm">
+            <header className="fixed top-0 left-0 z-50 w-full bg-white/30 backdrop-blur-md border-b border-white/20 h-16 shadow-sm">
                 <div className="px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center md:flex-row lg:flex-row justify-between h-16">
                         <div className="title">

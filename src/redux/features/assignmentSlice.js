@@ -59,11 +59,11 @@ export const assignmentSlice = createSlice({
         addAssignment: (state, action) => {
             const newAssignment = {
                 id: assignmentsData.length + 1,
-                title: action.payload,
-                subject: action.payload,
-                dueDate: action.payload,
-                status: action.payload,
-                type: action.payload,
+                title: action.payload.title,
+                subject: action.payload.subject,
+                dueDate: action.payload.dueDate,
+                status: "pending",
+                type: action.payload.type,
             }
             state.push(newAssignment);
         }

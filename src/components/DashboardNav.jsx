@@ -30,7 +30,7 @@ const DashboardNav = () => {
     ]
     return (
         <>
-            <div className='md:flex md:flex-row md:gap-6'>
+            <div className='pt-16 md:flex md:flex-row md:gap-6'>
                 <nav className='bg-white h-screen w-64 shadow-lg  left-0 top-16 hidden sm:hidden md:hidden lg:block'>
                     <div className='px-4 py-6'>
                         <ul className='space-y-5'>

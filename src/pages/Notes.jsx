@@ -7,8 +7,8 @@ const Notes = () => {
         <>
             <div className="flex flex-col items-center p-6">
                 <div>
-                    <h1 className="text-4xl font-bold">Assignments & Exams</h1>
-                    <p className="text-gray-600 text-lg">Manage your academic tasks and deadlines</p>
+                    <h1 className="text-4xl font-bold text-center">My Note</h1>
+                    <p className="text-gray-600 text-md">Organize and manage your study notes</p>
                 </div>
 
                 <div className="search">

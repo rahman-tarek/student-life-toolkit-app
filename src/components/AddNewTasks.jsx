@@ -11,8 +11,8 @@ import { addAssignment } from "../redux/features/assignmentSlice";
 import dayjs from "dayjs";
 
 
-const AddNewAssignment = ({ onClose }) => {
-
+const AddNewAssignment = (isOpen) => {
+    const [open, setOpen] = React.useState(isOpen);
     const [title, setTitle] = React.useState("");
     const [subject, setSubject] = React.useState("");
     const [type, setType] = React.useState("");
@@ -35,8 +35,8 @@ const AddNewAssignment = ({ onClose }) => {
     return (
         <>
             <Modal
-                open={onClose}
-                onClose={onClose}
+                open={open}
+                onClose={!open}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
@@ -85,13 +85,13 @@ const AddNewAssignment = ({ onClose }) => {
                                         type="submit"
                                         className="outline-none px-4 py-2 rounded-md bg-green-800 text-gray-100 text-sm font-bold">Add Assignment</button>
                                     <button className="outline-none px-2 py-2 rounded-md bg-gray-300 text-gray-800 text-sm font-bold"
-                                        onClick={onClose}
+                                        onClick={() => setOpen(!open)}
                                     >Cancel</button>
                                 </div>
                             </form>
                         </div>
                         <div>
-                            <MdClose size={20} color="gray-800" className="absolute top-1 right-1 m-2 cursor-pointer" onClick={onClose} />
+                            <MdClose size={20} color="gray-800" className="absolute top-1 right-1 m-2 cursor-pointer" onClick={() => setOpen(!setOpen)} />
                         </div>
                     </div>
                 </Box>

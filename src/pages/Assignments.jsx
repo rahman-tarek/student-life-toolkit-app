@@ -22,7 +22,7 @@ const AssignmentManagement = () => {
             </div>
             <AssignmentTable />
             {
-                isOpen && <AddNewAssignment isOpen={isOpen} />
+                isOpen && <AddNewAssignment onClose={() => setIsOpen(!isOpen)} />
             }
         </>
     )
