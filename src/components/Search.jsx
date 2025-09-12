@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
-const Search = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+const Search = ({ onSearch }) => {
 
-    // Handle Search Term
+    // Passing search term to parent as a callback
     const handleSearch = (e) => {
-        setSearchTerm(e.target.value);
+        onSearch(e.target.value);
     }
     return (
         <>
@@ -14,7 +13,7 @@ const Search = () => {
                 <form action="">
                     <div className="search-wrapper">
                         <FaSearch className="search-icon" />
-                        <input type="text" placeholder="Search..." value={searchTerm} onChange={handleSearch} />
+                        <input type="text" placeholder="Search..." onChange={handleSearch} />
                     </div>
                 </form>
             </div>

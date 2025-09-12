@@ -1,12 +1,21 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { useSelector } from "react-redux";
+import Search from "./Search";
 
 
 const AssignmentTable = () => {
     const [selectedSub, setSelectedSub] = useState("All");
     const [selectedStatus, setSelectedStatus] = useState("All");
     const assignments = useSelector((state) => state.assignment);
+
+    // Search term to get filtered
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Callback for child
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+    }
 
     // Extract unique 
     const uniqueSubjects = ["All", ...new Set(assignments.map((item) => item.subject))];
@@ -16,21 +25,15 @@ const AssignmentTable = () => {
     const filteredAssignments = assignments.filter((item) => {
         const statusMatch = selectedStatus === "All" || item.status === selectedStatus;
         const subjectMatch = selectedSub === "All" || item.subject === selectedSub;
-        return statusMatch && subjectMatch;
+        const searched = item.title.toLowerCase().includes(searchTerm.toLocaleLowerCase());
+        return statusMatch && subjectMatch && searched;
     })
 
     return (
         <>
             <div className="p-2 sm:p-1 md:p-0 lg:p-0">
                 <div className="flex flex-col md:flex-row p-4 rounded-lg shadow-sm border border-gray-300">
-                    <div className="search">
-                        <form action="">
-                            <div className="search-wrapper">
-                                <FaSearch className="search-icon" />
-                                <input type="text" placeholder="Search..." />
-                            </div>
-                        </form>
-                    </div>
+                    <Search onSearch={handleSearch} />
                     {/* Select status */}
                     <div className="p-4">
                         <select
