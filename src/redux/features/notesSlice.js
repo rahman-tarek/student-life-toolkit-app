@@ -72,7 +72,15 @@ const tasksSlice = createSlice({
             state.push(newNote);
         },
         updateNote: (state, action) => {
-
+            const { id, title, description, content, subject, lastUpdated } = action.payload;
+            const note = state.find((item) => item.id === id);
+            if (note) {
+                note.title = title;
+                note.description = description;
+                note.content = content;
+                note.subject = subject;
+                note.lastUpdated = lastUpdated;
+            }
         },
         deleteNote: (state, action) => {
             state = initialNotes.filter((item) => item.id != action.payload);
