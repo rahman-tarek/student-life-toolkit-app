@@ -35,4 +35,18 @@
     .add-assignment .item {
         @apply flex flex-col;
     }
+
+    /* Add Notes Css */
+    .add-notes label {
+        @apply text-gray-600 text-sm font-bold;
+    }
+
+    .add-notes input,
+    textarea {
+        @apply text-gray-800 px-4 py-2 rounded-md outline-none shadow-xs;
+    }
+
+    .add-notes .item {
+        @apply flex flex-col;
+    }
 }

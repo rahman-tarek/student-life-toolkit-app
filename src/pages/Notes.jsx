@@ -1,8 +1,13 @@
 import { FaSearch } from "react-icons/fa";
 import AllNotes from "../components/notes/AllNotes";
 import { FiPlus } from "react-icons/fi";
+import { useSelector } from "react-redux";
+import AddNewNotes from "../components/AddNewNotes";
+import { useState } from "react";
 
 const Notes = () => {
+    const [isOpen, setIsOpen] = useState(false);
+
     return (
         <>
             <div className="flex flex-col items-center p-6">
@@ -24,9 +29,15 @@ const Notes = () => {
 
             </div>
             {/* Add new notes */}
-            <button className="fixed bottom-6 right-6 p-4 rounded-full bg-green-800 text-white cursor-pointer">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="fixed bottom-6 right-6 p-4 rounded-full bg-green-800 text-white cursor-pointer">
                 <FiPlus size={25} />
             </button>
+            {/* Modal for adding new note */}
+            {
+                isOpen && <AddNewNotes onClose={() => setIsOpen(!isOpen)} />
+            }
         </>
     )
 }
