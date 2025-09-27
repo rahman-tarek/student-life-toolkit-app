@@ -63,7 +63,7 @@ const AllTodos = () => {
 
     return (
         <>
-            <div className="p-4 mt-8 rounded-lg border border-gray-300">
+            <div className="md:p-4 mt-8 rounded-lg border border-gray-300">
                 <div className="flex flex-col md:flex-row justify-between items-center p-6 items-center">
                     <div>
                         <p className="text-gray-700 font-bold text-2xl">Tasks</p>

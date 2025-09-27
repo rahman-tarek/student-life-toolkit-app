@@ -8,6 +8,9 @@ import store from './redux/store.js';
 import Dashboard from './pages/Dashboard.jsx';
 import AssignmentManagement from './pages/Assignments.jsx';
 import Notes from './pages/notes.jsx';
+import ToDo from './pages/ToDo.jsx';
+import Resources from './pages/Resources.jsx';
+import Settings from './pages/Settings.jsx';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -18,7 +21,9 @@ createRoot(document.getElementById('root')).render(
             <Route index element={<Dashboard />} />
             <Route path='/assignments' element={<AssignmentManagement />} />
             <Route path='/notes' element={<Notes />} />
-
+            <Route path='/todos' element={<ToDo />} />
+            <Route path='/resources' element={<Resources />} />
+            <Route path='/settings' element={<Settings />} />
           </Route>
         </Routes>
       </BrowserRouter>

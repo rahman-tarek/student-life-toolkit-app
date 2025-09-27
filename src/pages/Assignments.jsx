@@ -7,7 +7,7 @@ const AssignmentManagement = () => {
     return (
         <>
             <div className="mt-10 p-2">
-                <div className="flex flex-col justify-between items-center p-6 items-center">
+                <div className="flex flex-col justify-between items-center p-6">
                     <div className="w-full py-4 flex md:flex-row flex-col justify-between items-center">
                         <div>
                             <h1 className="text-2xl md:text-4xl font-bold">Assignments & Exams</h1>

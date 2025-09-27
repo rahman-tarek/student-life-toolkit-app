@@ -4,13 +4,15 @@ import TaskTracking from "../components/todo/TaskTracking";
 const ToDo = () => {
     return (
         <>
-            <div className="p-4">
-                <div>
-                    <h1 className="text-4xl font-bold">To-Do & Productivity</h1>
-                    <p className="text-gray-600 text-lg">Manage your tasks and stay focused with the Pomodoro technique.</p>
+            <div className="w-full mt-16">
+                <div className="p-4 md:p-8">
+                    <div>
+                        <h1 className="text-4xl font-bold">To-Do & Productivity</h1>
+                        <p className="text-gray-600 text-lg">Manage your tasks and stay focused with the Pomodoro technique.</p>
+                    </div>
+                    <TaskTracking />
+                    <AllTodos />
                 </div>
-                <TaskTracking />
-                <AllTodos />
             </div>
         </>
     )

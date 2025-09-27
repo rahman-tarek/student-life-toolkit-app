@@ -10,23 +10,23 @@ const Notes = () => {
 
     return (
         <>
-            <div className="flex flex-col items-center p-6">
-                <div>
-                    <h1 className="text-4xl font-bold text-center">My Note</h1>
-                    <p className="text-gray-600 text-md">Organize and manage your study notes</p>
+            <div className="mt-16 md:p-4">
+                <div className="flex flex-col items-center p-6">
+                    <div>
+                        <h1 className="text-4xl font-bold text-center">My Note</h1>
+                        <p className="text-gray-600 text-md text-center">Organize and manage your study notes</p>
+                    </div>
+
+                    <div className="search">
+                        <form action="">
+                            <div className="search-wrapper">
+                                <FaSearch className="search-icon" />
+                                <input type="text" placeholder="Search..." />
+                            </div>
+                        </form>
+                    </div>
+                    <AllNotes />
                 </div>
-
-                <div className="search">
-                    <form action="">
-                        <div className="search-wrapper">
-                            <FaSearch className="search-icon" />
-                            <input type="text" placeholder="Search..." />
-                        </div>
-                    </form>
-                </div>
-                <AllNotes />
-
-
             </div>
             {/* Add new notes */}
             <button
