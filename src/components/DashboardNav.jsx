@@ -6,6 +6,7 @@ import {
     MdSchedule,
     MdSettings
 } from 'react-icons/md';
+import { IoBookOutline } from "react-icons/io5";
 import { useState } from 'react';
 import ClassSchedules from './ClassSchedules';
 import Upcoming from './Upcoming';
@@ -37,7 +38,7 @@ const DashboardNav = () => {
 
                             <li>
                                 <Link to='/' className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
-                                    <MdDashboard className='w-5 h-5' />
+                                    <IoBookOutline className='w-5 h-5' />
                                     <span>Dashboard</span>
                                 </Link>
 
