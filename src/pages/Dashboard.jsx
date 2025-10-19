@@ -1,5 +1,6 @@
 import ClassSchedules from "../components/ClassSchedules";
 import PomodoroTimer from "../components/PomodoroTimer";
+import ToDoProgress from "../components/ToDoProgress";
 import Upcoming from "../components/Upcoming";
 
 const Dashboard = () => {
@@ -18,7 +19,7 @@ const Dashboard = () => {
                 </div>
                 <div className='p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4'>
                     <Upcoming />
-                    <ClassSchedules />
+                    <ToDoProgress />
                     <ClassSchedules />
                 </div>
             </div>
