@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { NavLink } from 'react-router';
 import {
     MdDashboard,
     MdAssignment,
@@ -6,8 +6,10 @@ import {
     MdSchedule,
     MdSettings
 } from 'react-icons/md';
+import { FaBook } from "react-icons/fa";
+
 import { IoBookOutline } from "react-icons/io5";
-import { useState } from 'react';
+import { act, useState } from 'react';
 import ClassSchedules from './ClassSchedules';
 import Upcoming from './Upcoming';
 import Dashboard from '../pages/Dashboard';
@@ -19,7 +21,8 @@ import Resources from '../pages/Resources';
 import Settings from '../pages/Settings';
 
 const DashboardNav = () => {
-    const [isActive, setIsActive] = useState("Dashboard");
+    const activeLink = ({ isActive }) => `flex items-center gap-2 px-4 py-2 hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200 ${isActive ? "bg-green-800 text-white" : "hover:bg-gray-700"
+        }`;
 
     const navItems = [
         { icon: <MdDashboard className="w-5 w-5" />, label: "Dashboard", path: '/dashboard' },
@@ -37,45 +40,45 @@ const DashboardNav = () => {
                         <ul className='space-y-5'>
 
                             <li>
-                                <Link to='/' className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
+                                <NavLink to='/' end className={activeLink}>
                                     <IoBookOutline className='w-5 h-5' />
                                     <span>Dashboard</span>
-                                </Link>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <Link to="/assignments" className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
+                                <NavLink to="/assignments" className={activeLink}>
                                     <MdAssignment className='w-5 h-5' />
                                     <span>Assignments</span>
-                                </Link>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <Link to="/notes" className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
-                                    <MdAssignment className='w-5 h-5' />
+                                <NavLink to="/notes" className={activeLink}>
+                                    <MdEvent className='w-5 h-5' />
                                     <span>Notes</span>
-                                </Link>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <Link to="/todos" className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
-                                    <MdAssignment className='w-5 h-5' />
-                                    <span>ToDos</span>
-                                </Link>
+                                <NavLink to="/todos" className={activeLink}>
+                                    <MdSchedule className='w-5 h-5' />
+                                    <span>To-Do</span>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <Link to="/resources" className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
-                                    <MdAssignment className='w-5 h-5' />
+                                <NavLink to="/resources" className={activeLink}>
+                                    <FaBook className='w-5 h-5' />
                                     <span>Resources</span>
-                                </Link>
+                                </NavLink>
 
                             </li>
                             <li>
-                                <Link to="/settings" className={`flex items-center gap-2 px-4 py-2 ${isActive === '' ? "text-white bg-green-900" : "text-gray-700 bg-white"} hover:bg-green-900 hover:text-white rounded-lg transition-colors duration-200`}>
+                                <NavLink to="/settings" className={activeLink}>
                                     <MdSettings className='w-5 h-5' />
                                     <span>Settings</span>
-                                </Link>
+                                </NavLink>
 
                             </li>
 
