@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdDateRange, MdEvent } from "react-icons/md";
+import Search from "../Search";
 
 const initialTasks = [
     {
@@ -52,13 +53,20 @@ const initialTasks = [
 const AllTodos = () => {
     const [priority, setPriority] = useState("All");
     const [status, setStatus] = useState("All");
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Callback for child
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+    }
 
     // Filter tasks
     const filteredTasks = initialTasks.filter((item) => {
         const priorityTasks = priority === "All" || priority == item.priority;
         const newStatus = status === "Pending" ? false : true;
         const statusTasks = status === "All" || newStatus === item.completed;
-        return priorityTasks && statusTasks;
+        const searchedTasks = item.title.toLowerCase().includes(searchTerm.toLowerCase()) || item.description.toLowerCase().includes(searchTerm.toLowerCase());
+        return priorityTasks && statusTasks && searchedTasks;
     })
 
     return (
@@ -76,14 +84,7 @@ const AllTodos = () => {
                     </div>
                 </div>
                 <div className="flex flex-col md:flex-row p-4 justify-center">
-                    <div className="search">
-                        <form action="">
-                            <div className="search-wrapper">
-                                <FaSearch className="search-icon" />
-                                <input type="text" placeholder="Search tasks..." />
-                            </div>
-                        </form>
-                    </div>
+                    <Search onSearch={handleSearch} />
                     {/* Select status */}
                     <div className="p-4">
                         <select
