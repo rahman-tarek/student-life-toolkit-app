@@ -4,9 +4,16 @@ import { FiPlus } from "react-icons/fi";
 import { useSelector } from "react-redux";
 import AddNewNotes from "../components/AddNewNotes";
 import { useState } from "react";
+import Search from "../components/Search";
 
 const Notes = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    // Callback for search
+    const handleSearch = (term) => {
+        setSearchTerm(term);
+    }
 
     return (
         <>
@@ -17,18 +24,11 @@ const Notes = () => {
                         <p className="text-gray-600 text-md text-center">Organize and manage your study notes</p>
                     </div>
 
-                    <div className="search">
-                        <form action="">
-                            <div className="search-wrapper">
-                                <FaSearch className="search-icon" />
-                                <input type="text" placeholder="Search..." />
-                            </div>
-                        </form>
-                    </div>
-                    <AllNotes />
+                    <Search onSearch={handleSearch} />
+                    <AllNotes searchValue={searchTerm} />
                 </div>
             </div>
-            {/* Add new notes */}
+            {/* Add new notes button */}
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="fixed bottom-6 right-6 p-4 rounded-full bg-green-800 text-white cursor-pointer">

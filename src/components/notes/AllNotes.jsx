@@ -7,12 +7,17 @@ import UpdateNote from "./UpDateNote";
 
 
 
-const AllNotes = () => {
+const AllNotes = ({ searchValue }) => {
     const [show, setShow] = useState(null);
     const [isOpen, setIsOpen] = useState(false)
     const dispatch = useDispatch()
+
     // Get all notes from state
     const notes = useSelector((state) => state.notes.notes);
+
+    // Filter notes based on search value
+    const filteredNotes = notes.filter((note) =>
+        note.title.toLowerCase().includes(searchValue.toLowerCase()) || note.description.toLowerCase().includes(searchValue.toLowerCase()) || note.subject.toLowerCase().includes(searchValue.toLowerCase()))
 
     const deleteNoteHandle = (id) => {
         dispatch(deleteNote(id));
@@ -23,7 +28,7 @@ const AllNotes = () => {
     return (
         <>
             <div className="p-4 w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                {notes.map((item, index) => (
+                {filteredNotes.map((item, index) => (
                     <div
                         onMouseEnter={() => setShow(item.id)}
                         onMouseLeave={() => setShow(null)}
