@@ -63,8 +63,13 @@ const initialResources = [
 ]
 
 const filteredTags = Array.from(new Map(initialResources.map((item, index) => [item.id, item])).values());
-console.log(filteredTags)
-const ResourcesCard = () => {
+
+const ResourcesCard = ({ searchValue }) => {
+    const filteredResources = initialResources.filter((item) =>
+        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.description.toLowerCase().includes(searchValue.toLowerCase()) ||
+        item.tags.some(tag => tag.toLowerCase().includes(searchValue.toLowerCase()))
+    )
     return (
         <>
             <div className="py-4">
@@ -89,7 +94,7 @@ const ResourcesCard = () => {
 
                 {/* Resources cards */}
                 <div className="py-6 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {initialResources.map((item, index) => (
+                    {filteredResources.map((item, index) => (
                         <div className="p-6 border border-gray-300 rounded-lg" key={index}>
                             <div className="flex flex-row items-center gap-2">
                                 {item.type === "PDF" ?
