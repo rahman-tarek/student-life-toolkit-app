@@ -2,10 +2,25 @@ import ResourcesCard from "../components/resources/ResourcesCard";
 import { FaSearch } from "react-icons/fa";
 import Search from "../components/Search"
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 const Resources = () => {
+    const [selectedSub, setSelectedSub] = useState("All");
     const [isOpen, setIsOpen] = useState(false);
     const [searchTerm, setSearchTerm] = useState("");
+
+    // Get all resources from state
+    const resources = useSelector(state => state.resources);
+
+    // Extract unique subjects
+    const extractedSubjects = ["All", ...new Set(resources.map(item => item.tags[0]))];
+
+    // Filtering logics
+    // const filteredResources = resources.filter((item) => {
+    //     const subjectMatch = selectedSub === "All" || item.tags.includes(selectedSub);
+    //     const searched = item.title.toLowerCase().includes(searchTerm.toLowerCase());
+
+    // })
 
     // Callback for search
     const handleSearch = (term) => {
@@ -21,14 +36,17 @@ const Resources = () => {
                         {/* Search */}
                         <Search onSearch={handleSearch} />
                         <div className="flex flex-col md:flex-row flex-between items-center gap-2">
-                            {/* Select status */}
+                            {/* Select subject */}
                             <div className="p-4">
                                 <select
-                                    value={"All"}
-                                    onChange={(e) => e.target.value}
+                                    value={selectedSub}
+                                    onChange={(e) => setSelectedSub(e.target.value)}
                                     className="w-60 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-800"
                                 >
-                                    All
+
+                                    {extractedSubjects.map((item, index) => (
+                                        <option value={item} key={index}>{item}</option>
+                                    ))}
                                 </select>
                             </div>
                             {/* Add new resources */}
@@ -38,7 +56,7 @@ const Resources = () => {
                             </button>
                         </div>
                     </div>
-                    <ResourcesCard searchValue={searchTerm} />
+                    <ResourcesCard searchValue={{ searchTerm, selectedSub }} />
                 </div>
             </div>
         </>

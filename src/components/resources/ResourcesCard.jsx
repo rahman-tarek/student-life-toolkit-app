@@ -3,6 +3,7 @@ import { FaFilePdf, FaVideo } from "react-icons/fa";
 import { MdOndemandVideo } from "react-icons/md";
 import { FaLink } from "react-icons/fa";
 import { Link } from "react-router";
+import { useSelector } from "react-redux";
 
 // Sample resources data
 const initialResources = [
@@ -65,11 +66,18 @@ const initialResources = [
 const filteredTags = Array.from(new Map(initialResources.map((item, index) => [item.id, item])).values());
 
 const ResourcesCard = ({ searchValue }) => {
-    const filteredResources = initialResources.filter((item) =>
-        item.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-        item.description.toLowerCase().includes(searchValue.toLowerCase()) ||
-        item.tags.some(tag => tag.toLowerCase().includes(searchValue.toLowerCase()))
-    )
+    const resources = useSelector(state => state.resources);
+    const { searchTerm, selectedSub } = searchValue;
+
+    // Filtering logics
+    const filteredResources = resources.filter((item) => {
+        const searched = item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+        // Extract subjects matching selected data
+        const subjectMatch = selectedSub === "All" || item.tags.includes(selectedSub);
+        return subjectMatch && searched;
+    })
     return (
         <>
             <div className="py-4">
