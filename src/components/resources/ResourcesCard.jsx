@@ -4,6 +4,7 @@ import { MdOndemandVideo } from "react-icons/md";
 import { FaLink } from "react-icons/fa";
 import { Link } from "react-router";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 // Sample resources data
 const initialResources = [
@@ -68,6 +69,7 @@ const filteredTags = Array.from(new Map(initialResources.map((item, index) => [i
 const ResourcesCard = ({ searchValue }) => {
     const resources = useSelector(state => state.resources);
     const { searchTerm, selectedSub } = searchValue;
+    const [selectedTag, setSelectedTag] = useState("");
 
     // Filtering logics
     const filteredResources = resources.filter((item) => {
@@ -76,7 +78,8 @@ const ResourcesCard = ({ searchValue }) => {
             item.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
         // Extract subjects matching selected data
         const subjectMatch = selectedSub === "All" || item.tags.includes(selectedSub);
-        return subjectMatch && searched;
+        const tagMatch = selectedTag === "" || item.tags.includes(selectedTag);
+        return subjectMatch && searched && tagMatch;
     })
     return (
         <>
@@ -91,7 +94,7 @@ const ResourcesCard = ({ searchValue }) => {
                         {filteredTags.map((item, index) =>
                         (
                             item.tags.map((tag, index) => (
-                                <button key={index} className="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-green-800 hover:text-white transition">
+                                <button value={tag} key={index} onClick={(e) => setSelectedTag(e.target.value)} className="px-3 py-1 text-sm bg-white border border-gray-300 text-gray-700 rounded-lg hover:bg-green-800 hover:text-white transition">
                                     {tag}
                                 </button>
                             ))
