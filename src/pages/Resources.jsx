@@ -3,6 +3,7 @@ import { FaSearch } from "react-icons/fa";
 import Search from "../components/Search"
 import { useState } from "react";
 import { useSelector } from "react-redux";
+import AddNewResource from "../components/resources/AddNewResources";
 
 const Resources = () => {
     const [selectedSub, setSelectedSub] = useState("All");
@@ -50,10 +51,16 @@ const Resources = () => {
                                 </select>
                             </div>
                             {/* Add new resources */}
-                            <button className="flex flex-row justify-between items-center gap-2 py-1 px-4 rounded-md bg-green-800 text-white cursor-pointer">
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                className="flex flex-row justify-between items-center gap-2 py-1 px-4 rounded-md bg-green-800 text-white cursor-pointer">
                                 <span className="text-lg">+</span>
                                 <p>Add Assignment</p>
                             </button>
+                            {/* Modal for adding new resources */}
+                            {
+                                isOpen && AddNewResource({ open: isOpen, onClose: () => setIsOpen(!isOpen) })
+                            }
                         </div>
                     </div>
                     <ResourcesCard searchValue={{ searchTerm, selectedSub }} />
