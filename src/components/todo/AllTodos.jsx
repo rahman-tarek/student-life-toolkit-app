@@ -2,58 +2,15 @@ import { useState } from "react";
 import { FaSearch } from "react-icons/fa";
 import { MdDateRange, MdEvent } from "react-icons/md";
 import Search from "../Search";
+import { useSelector } from "react-redux";
 
-const initialTasks = [
-    {
-        id: "1",
-        title: "Complete Math Assignment",
-        description: "Solve problems 1-20 from Chapter 5",
-        deadline: "2024-12-15",
-        priority: "High",
-        completed: false,
-        createdAt: "2024-12-10",
-    },
-    {
-        id: "2",
-        title: "Study for Physics Exam",
-        description: "Review chapters 8-12, focus on thermodynamics",
-        deadline: "2024-12-20",
-        priority: "High",
-        completed: false,
-        createdAt: "2024-12-10",
-    },
-    {
-        id: "3",
-        title: "Write History Essay",
-        description: "2000 words on World War II impact",
-        deadline: "2024-12-22",
-        priority: "medium",
-        completed: true,
-        createdAt: "2024-12-08",
-    },
-    {
-        id: "4",
-        title: "Chemistry Lab Report",
-        description: "Document experiment results and analysis",
-        deadline: "2024-12-18",
-        priority: "Medium",
-        completed: false,
-        createdAt: "2024-12-09",
-    },
-    {
-        id: "5",
-        title: "Read Literature Chapter",
-        description: "Chapter 15-17 for next class discussion",
-        deadline: "2024-12-16",
-        priority: "Low",
-        completed: true,
-        createdAt: "2024-12-07",
-    },
-]
+
 const AllTodos = () => {
     const [priority, setPriority] = useState("All");
     const [status, setStatus] = useState("All");
     const [searchTerm, setSearchTerm] = useState("");
+
+    const { initialTasks } = useSelector((state) => state.tasks);
 
     // Callback for child
     const handleSearch = (term) => {
