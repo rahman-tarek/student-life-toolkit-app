@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addResource } from "../../redux/features/resourceSlice";
+import { addTask } from "../../redux/features/tasksSlice";
 import FormModal from "../FormModal";
 
 const CreateTask = ({ open, onClose }) => {
@@ -10,51 +10,40 @@ const CreateTask = ({ open, onClose }) => {
     const fields = [
         {
             name: "title",
-            label: "Resource Title",
+            label: "Task Title",
             type: "text",
-            placeholder: "Enter resource title...",
-        },
-        {
-            name: "link",
-            label: "Link / URL",
-            type: "text",
-            placeholder: "https://example.com",
+            placeholder: "Enter task title...",
         },
         {
             name: "type",
-            label: "Resource Type",
+            label: "Priority",
             type: "select",
             options: [
-                { label: "Link", value: "link" },
-                { label: "Video", value: "video" },
-                { label: "PDF", value: "pdf" },
+                { label: "Low", value: "low" },
+                { label: "Medium", value: "medium" },
+                { label: "High", value: "high" },
             ],
         },
         {
             name: "description",
-            label: "Description",
+            label: "Description(Opyional)",
             type: "textarea",
-            placeholder: "Brief description of the resource...",
+            placeholder: "Brief description of the task...",
         },
-        {
-            name: "tags",
-            label: "Tags (comma-separated)",
-            type: "text",
-            placeholder: "Mathematics, Calculus",
-        },
+
     ];
 
     // Submit handler
-    const handleAddResource = (data) => {
+    const handleAddTask = (data) => {
         // Clean up tags into array
-        const formattedData = {
-            ...data,
-            tags: data.tags
-                ? data.tags.split(",").map((tag) => tag.trim())
-                : [],
-        };
+        // const formattedData = {
+        //     ...data,
+        //     tags: data.tags
+        //         ? data.tags.split(",").map((tag) => tag.trim())
+        //         : [],
+        // };
 
-        dispatch(addResource(formattedData)); // Dispatch to Redux (example)
+        dispatch(addTask(data)); // Dispatch to Redux
         onClose(); // Close modal
     };
 
@@ -64,7 +53,7 @@ const CreateTask = ({ open, onClose }) => {
             onClose={onClose}
             title="Create New Task"
             fields={fields}
-            onSubmit={handleAddResource}
+            onSubmit={handleAddTask}
             submitText="Create Task"
         />
     )

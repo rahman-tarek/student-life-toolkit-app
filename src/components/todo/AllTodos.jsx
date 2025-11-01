@@ -5,7 +5,7 @@ import Search from "../Search";
 import { useSelector } from "react-redux";
 
 
-const AllTodos = () => {
+const AllTodos = ({ onClose }) => {
     const [priority, setPriority] = useState("All");
     const [status, setStatus] = useState("All");
     const [searchTerm, setSearchTerm] = useState("");
@@ -34,7 +34,9 @@ const AllTodos = () => {
                         <p className="text-gray-700 font-bold text-2xl">Tasks</p>
                     </div>
                     <div>
-                        <button className="flex flex-col md:flex-row justify-between items-center gap-2 py-1 px-4 rounded-md bg-green-800 text-white cursor-pointer">
+                        <button
+                            onClick={onClose}
+                            className="flex flex-col md:flex-row justify-between items-center gap-2 py-1 px-4 rounded-md bg-green-800 text-white cursor-pointer">
                             <span className="text-lg">+</span>
                             <p>Create Task</p>
                         </button>
